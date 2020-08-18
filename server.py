@@ -6,7 +6,7 @@ from database import UserState, logger, username_to_db_id, telegram_uid_to_usern
 from datetime import datetime
 from flask import Flask, make_response
 import json
-from ntplib import NTPClient
+import pytz
 
 
 lock = 0
@@ -23,10 +23,8 @@ def ping():
 @app.route('/timehour/<string:username>/')
 def timehour(username):
     with lock:
-        client = NTPClient()
-        response = client.request('1.pool.ntp.org', version=3)
-        timestamp = response.tx_time
-        dt = datetime.fromtimestamp(timestamp)
+        tz = pytz.timezone('Europe/Moscow')
+        dt = datetime.now(tz)
         logger.log(username, Action.SERVER_TIME, True, str(dt))
         return make_response(f"{dt.hour}", 200)
 
