@@ -168,7 +168,7 @@ def on_talking(message):
         logger.log(username, Action.TELEGRAM_TALKING, True, str(uid))
         if username == "N/A":
             username = message.text
-            if username_to_db_id.user_exists(username):
+            if username != ADMIN_NAME and username_to_db_id.user_exists(username):
                 telegram_uid_to_username.add_user(uid, username)
                 userstate = UserState.load_from_db(username)
                 bot.send_message(uid, talks_dict[Lang.ENG.value]["lang"])
@@ -187,7 +187,7 @@ def on_talking(message):
 
         if state == State.INPUT_NAME.value:
             name = input
-            if username_to_db_id.user_exists(name):
+            if name != ADMIN_NAME and username_to_db_id.user_exists(name):
                 telegram_uid_to_username.add_user(uid, name)
                 userstate = UserState.load_from_db(name)
                 lang = userstate.lang.value
