@@ -2,10 +2,47 @@
 
 from copy import deepcopy
 import json
+import os
 from time import time
 from vedis import Vedis
+import yadisk
 
-from config import State, Lang, Action, log_path, known_users_path, telegram_uids_path, user_db_path, ADMIN_NAME
+from config import State, Lang, Action, \
+                   log_path, known_users_path, telegram_uids_path, user_db_path, \
+                   ADMIN_NAME, OAUTH_TOKEN, YADISK_PATH
+
+
+def cloud_download_files():
+    need_to_download = []
+    for path in [log_path,
+                 known_users_path,
+                 telegram_uids_path,
+                 user_db_path,
+                 'Swears.txt']:
+        if not os.path.exists(path):
+            need_to_download.append(path)
+    if need_to_download:
+        y = yadisk.YaDisk(token=OAUTH_TOKEN)
+        if not y.check_token():
+            raise ValueError("OAUTH_TOKEN expired :(")
+        for path in need_to_download:
+            y.download(f"{YADISK_PATH}/{path}", path)
+
+def cloud_upload_files():
+    y = yadisk.YaDisk(token=OAUTH_TOKEN)
+    if not y.check_token():
+        raise ValueError("OAUTH_TOKEN expired :(")
+    if not y.exists(YADISK_PATH):
+        y.mkdir(YADISK_PATH)
+    for path in [log_path,
+                 known_users_path,
+                 telegram_uids_path,
+                 user_db_path,
+                 'Swears.txt']:
+        yapath = f"{YADISK_PATH}/{path}"
+        if y.exists(yapath):
+            y.remove(yapath, permanently=True)
+        y.upload(path, yapath)
 
 
 class Logger:
@@ -35,6 +72,7 @@ class Logger:
                   sep='|',
                   file=fout)
 
+cloud_download_files()
 logger = Logger()
 
 

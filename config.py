@@ -4,12 +4,15 @@ from enum import Enum
 import os
 
 
-token = "1018507585:AAE34rim4NjeLn06e6N8C8xCCb3s_uQbziE"  # Telegram bot token
 log_path = "LogFull.txt"  # all actions & success (bool): sign in, save game, load game, make a DB request
 known_users_path = "KnownUsers.txt"  # username -> db_id
 telegram_uids_path = "TelegramUsers.txt"  # telegram_uid -> username
 user_db_path = "UsersDatabase.vdb"  # UserState -> JSON -> Vedis DB
+
+TELEGRAM_TOKEN = "1018507585:AAE34rim4NjeLn06e6N8C8xCCb3s_uQbziE"  # Telegram bot token
 ADMIN_NAME = "$ADMIN$"
+OAUTH_TOKEN = "AgAAAAAmkiywAAaOVxLLDpWX60aUsvsX4jJqLO0"
+YADISK_PATH = "/GrandHash"
 HOST = '0.0.0.0'
 PORT = os.environ.get('PORT', 5000)
 

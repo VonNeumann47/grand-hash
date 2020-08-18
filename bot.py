@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from config import State, Lang, Action, token, ADMIN_NAME
-from database import UserState, logger, username_to_db_id, telegram_uid_to_username, database_selector
+from config import State, Lang, Action, \
+                   ADMIN_NAME, TELEGRAM_TOKEN
+from database import UserState, \
+                     logger, username_to_db_id, telegram_uid_to_username, database_selector, \
+                     cloud_download_files
 from talks import talks_dict, facts_dict, secret_pass, key_phrases, \
                   normalize_text, reEscapeString, is_word_in, \
                   is_lang_rus, is_lang_eng, \
@@ -57,12 +60,13 @@ def hash_username_secret_facts(name):
 
 
 lock = 0
-bot = tb.TeleBot(token)
+bot = tb.TeleBot(TELEGRAM_TOKEN)
 
 
 @bot.message_handler(content_types=['sticker', 'photo', 'voice'])
 def strange_content(message):
     with lock:
+        cloud_download_files()
         uid = message.chat.id
         try:
             username = telegram_uid_to_username.get_username(uid)
@@ -72,12 +76,12 @@ def strange_content(message):
             logger.log(username, Action.SENT_STRANGE_CONTENT, True, str(uid))
         except:  # unknown user -> ignore
             logger.log(ADMIN_NAME, Action.SENT_STRANGE_CONTENT, False, str(uid))
-            pass
 
 
 @bot.message_handler(commands=['start', 'restart'])
 def on_start(message):
     with lock:
+        cloud_download_files()
         uid = message.chat.id
         lang = Lang.ENG.value
         if not telegram_uid_to_username.user_exists(uid):
@@ -97,6 +101,7 @@ def on_start(message):
 @bot.message_handler(commands=['help'])
 def on_help(message):
     with lock:
+        cloud_download_files()
         uid = message.chat.id
         try:
             username = telegram_uid_to_username.get_username(uid)
@@ -110,12 +115,12 @@ def on_help(message):
         except:  # unknown user -> ignore
             bot.send_message(uid, "Gotta ignore you until we get acquainted.")
             logger.log(ADMIN_NAME, Action.TELEGRAM_COMMAND_HELP, False, "UNKNOWN_TELEGRAM_UID")
-            pass
 
 
 @bot.message_handler(commands=['exit', 'quit', 'runaway', 'getout'])
 def on_exit(message):
     with lock:
+        cloud_download_files()
         uid = message.chat.id
         try:
             username = telegram_uid_to_username.get_username(uid)
@@ -128,12 +133,12 @@ def on_exit(message):
         except:  # unknown user -> ignore
             bot.send_message(uid, "Gotta ignore you until we get acquainted.")
             logger.log(ADMIN_NAME, Action.TELEGRAM_COMMAND_EXIT, False, "UNKNOWN_TELEGRAM_UID")
-            pass
 
 
 @bot.message_handler(commands=['info', 'random', 'talk'])
 def on_info(message):
     with lock:
+        cloud_download_files()
         uid = message.chat.id
         try:
             username = telegram_uid_to_username.get_username(uid)
@@ -152,12 +157,12 @@ def on_info(message):
         except:  # unknown user -> ignore
             bot.send_message(uid, "Gotta ignore you until we get acquainted.")
             logger.log(ADMIN_NAME, Action.TELEGRAM_COMMAND_INFO, False, "UNKNOWN_TELEGRAM_UID")
-            pass
 
 
 @bot.message_handler(func=lambda x: True)  # lambda?
 def on_talking(message):
     with lock:
+        cloud_download_files()
         uid = message.chat.id
         if not telegram_uid_to_username.user_exists(uid): # unknown telegram uid -> ignore
             bot.send_message(uid, "Gotta ignore you until we get acquainted.")
