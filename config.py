@@ -7,8 +7,8 @@ known_users_path = "KnownUsers.txt"  # username -> db_id
 telegram_uids_path = "TelegramUsers.txt"  # telegram_uid -> username
 user_db_path = "UsersDatabase.vdb"  # UserState -> JSON -> Vedis DB
 ADMIN_NAME = "$ADMIN$"
-HOST = '127.0.0.1'
-PORT = 5000
+HOST = 'https://grandhash.herokuapp.com/'
+PORT = 80
 
 
 class State(Enum):
