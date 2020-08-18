@@ -8,12 +8,13 @@ log_path = "LogFull.txt"  # all actions & success (bool): sign in, save game, lo
 known_users_path = "KnownUsers.txt"  # username -> db_id
 telegram_uids_path = "TelegramUsers.txt"  # telegram_uid -> username
 user_db_path = "UsersDatabase.vdb"  # UserState -> JSON -> Vedis DB
+swears_path = "Swears.txt"  # "oh, ship!" etc.
 
 TELEGRAM_TOKEN = "1018507585:AAE34rim4NjeLn06e6N8C8xCCb3s_uQbziE"  # Telegram bot token
 ADMIN_NAME = "$ADMIN$"
 OAUTH_TOKEN = "AgAAAAAmkiywAAaOVxLLDpWX60aUsvsX4jJqLO0"
 YADISK_PATH = "/GrandHash"
-HOST = '0.0.0.0'
+HOST = "0.0.0.0"
 PORT = os.environ.get('PORT', 5000)
 
 
@@ -80,4 +81,7 @@ class Action(Enum):
     SERVER_CREATE_USER = 39
     SERVER_SAVE_GAME = 40
     SERVER_LOAD_GAME = 41
+
+    CLOUD_DOWNLOAD = 42
+    CLOUD_UPLOAD = 43
 

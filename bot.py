@@ -150,6 +150,7 @@ def on_info(message):
                 bot.send_message(uid, talks_dict[lang]["trash"])
                 return
 
+            bot.send_message(uid, talks_dict[lang]["superfact"])
             bot.send_message(uid, facts_dict[lang][userstate.fact_idx])
             userstate.fact_idx = (userstate.fact_idx + 1) % len(facts_dict[lang])
             userstate.save_in_db()

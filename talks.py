@@ -1,4 +1,4 @@
-from config import Lang
+from config import Lang, swears_path
 
 import re
 from string import punctuation
@@ -49,6 +49,8 @@ talks_dict = {
         "secret_found":     "Ок, кажется, ты шаришь...\n"
                             "Пиши /info, /talk или /random, чтобы узнать забавные факты о разработке игры.",
 
+        "superfact":        "---------------- ФАКТ, КОТОРЫЙ ТЫ НЕ ЗНАЛ! -----------------",
+
         "strange_content":  "ОГО, кажется, ты шаришь в высоких технологиях!\n"
                             "Сколько времени требуется, чтобы научиться отправлять медиафайлы?\n"
                             "(Я в любом случае не буду парсить этот мусор...)",
@@ -88,6 +90,8 @@ talks_dict = {
         
         "secret_found":     "Well, you got it...\n"
                             "Use /info, /talk or /random to get some facts about game development.",
+
+        "superfact":        "------------------ FACT YOU DID NOT KNOW! ------------------",
 
         "strange_content":  "WOW, it seems you're in touch with high technologies!\n"
                             "How long it takes to get used to sending media?\n"
@@ -236,8 +240,8 @@ def reEscapeString(string):
     specials = r"&*!.)_($+-'/"
     return ''.join(("\\" if c in specials else "") + c for c in string)
 
-swearMatch = ""
-with open("Swears.txt", 'r', encoding='utf-8') as fin:
+swearMatch = "^(.* )?oh,? ship( .*)?$|"
+with open(swears_path, 'r', encoding='utf-8') as fin:
     for line in fin:
         line = reEscapeString(line.strip())
         swearMatch += rf"^(.* )?{line}( .*)?$|"
