@@ -1,0 +1,2 @@
+    Username   |         Action type          | Success  |   Timestamp   |    Additional information    
+--------------------------------------------------------------------------------------------------------
