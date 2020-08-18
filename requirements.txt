@@ -1,0 +1,3 @@
+Flask==1.1.2
+ntplib==0.3.4
+vedis==0.7.1
