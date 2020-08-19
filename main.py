@@ -11,7 +11,8 @@ from time import sleep
 def backup_main(lock):
     while True:
         sleep(60 * 20)  # 20 minutes
-        cloud_upload_files()
+        with lock:
+            cloud_upload_files()
 
 
 if __name__ == '__main__':
