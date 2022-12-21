@@ -20,32 +20,32 @@ talks_dict = {
 
         "start_again":      "Пользователь с таким именем не найден.\n"
                             "Пожалуйста, введи свой ник из игры.",
-        
+
         "lang":             "Выбери язык: Eng / Rus",
-        
+
         "lang_again":       "Прости, но я не могу распознать такой мусор!\n"
                             "Выбери язык: Eng / Rus",
-        
+
         "fork":             "Привет, я @GrandHashBot!\n"
                             "Кажется, ты очень сообразительный игрок, раз добрался сюда!\n"
                             "Я распознаю некоторые команды, в роде /help, /exit, /quit, /runaway, /getout и др.\n"
                             "Пиши мне в любое время, когда захочешь, не стесняйся!",
-        
+
         "thanks":           "О, не за что меня благодарить!\n"
                             "Вообще, по большому счёту, я довольно бесполезен. Наверное...",
-        
+
         "offensive":        "А ты знаешь, что я тоже ругаться могу?\n"
                             "Только не буду. Потому что я мудрее тебя и знаю больше.\n"
                             "Да и вообще, я просто лучше.",
-        
+
         "question":         "Это что, вопрос?\n"
                             "Жаль что мне лень над ним думать.\n"
                             "Может, загуглишь?",
-        
+
         "greeting":         "Здравствуй! Скажи же, здорово быть приветливым? :)",
-        
+
         "bye":              "Пока! Возвращайся, а то мне скучно :(",
-        
+
         "secret_found":     "Ок, кажется, ты шаришь...\n"
                             "Пиши /info, /talk или /random, чтобы узнать забавные факты о разработке игры.",
 
@@ -62,32 +62,32 @@ talks_dict = {
 
         "start_again":      "User with this name was not found.\n"
                             "Enter your username, please.",
-        
+
         "lang":             "Choose language: Eng / Rus",
-        
+
         "lang_again":       "Sorry, I can't parse this garbage!\n"
                             "Choose language: Eng / Rus",
-        
+
         "fork":             "Hi, I'm @GrandHashBot!\n"
                             "You seem to be a smart player coz you're here!\n"
                             "I know some commands like /help, /exit, /quit, /runaway, /getout and others.\n"
                             "Don't hesitate to talk to me any time you want!",
-        
+
         "thanks":           "Ah, no problem!\n"
                             "Well, actually I'm rather useless. Probably...",
-        
+
         "offensive":        "Did you know I can swear too?\n"
                             "But I don't wanna to. Coz I'm wiser and smarter than you.\n"
                             "At last, I'm simply better.",
-        
+
         "question":         "What? A question?\n"
                             "Well, it's a pity that I'm too lazy to think about it.\n"
                             "Maybe, google?",
-        
+
         "greeting":         "Hello, nice to meet you! It's just so cool to be friendly, isn't it? :)",
-        
+
         "bye":              "Bye! Please, come back coz I'm bored :(",
-        
+
         "secret_found":     "Well, you got it...\n"
                             "Use /info, /talk or /random to get some facts about game development.",
 
@@ -331,4 +331,3 @@ def is_bye(text):
 
 def is_word_in(text, word):
     return re.match(re.compile(fr"^(.* )?{word}( .*)?$", re.I), text) is not None
-

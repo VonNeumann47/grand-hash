@@ -85,7 +85,7 @@ class UsernameToDBUid:
         self.path = other.path
         self.max_id = other.max_id
         self.map = deepcopy(other.map)
-        
+
     def __init__(self, init_from_file=True, logging=True):
         self.path = known_users_path
         self.max_id = 0
@@ -168,7 +168,7 @@ class TelegramToUsername:
     def copy(self, other):
         self.path = other.path
         self.map = deepcopy(other.map)
-        
+
     def __init__(self, init_from_file=True, logging=True):
         self.path = telegram_uids_path
         self.map = dict()
@@ -328,7 +328,7 @@ class DatabaseSelector:
         self.path = user_db_path
         if logging:
             logger.log(ADMIN_NAME, Action.INIT_DATABASE_SELECTOR, True)
-    
+
     def select_users_with_ach_done(self, user, k, logging=True):
         try:
             result = []
@@ -412,4 +412,3 @@ class DatabaseSelector:
             return None
 
 database_selector = DatabaseSelector()
-

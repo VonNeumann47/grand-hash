@@ -95,7 +95,6 @@ def on_start(message):
             userstate.save_in_db()
             logger.log(username, Action.TELEGRAM_COMMAND_START, True, str(uid))
         bot.send_message(uid, talks_dict[lang]["start"])
-        
 
 
 @bot.message_handler(commands=['help'])
@@ -169,7 +168,7 @@ def on_talking(message):
             bot.send_message(uid, "Gotta ignore you until we get acquainted.")
             logger.log(ADMIN_NAME, Action.TELEGRAM_TALKING, False, "UNKNOWN_TELEGRAM_UID")
             return
-        
+
         username = telegram_uid_to_username.get_username(uid)
         logger.log(username, Action.TELEGRAM_TALKING, True, str(uid))
         if username == "N/A":
@@ -185,7 +184,7 @@ def on_talking(message):
                 bot.send_message(uid, talks_dict[Lang.ENG.value]["start_again"])
                 logger.log(str(uid), Action.TELEGRAM_FIRST_ENTER, False, "UNKNOWN_USERNAME")
             return
-        
+
         userstate = UserState.load_from_db(username)
         lang = userstate.lang.value
         state = userstate.state.value
@@ -262,5 +261,3 @@ def bot_main(main_lock):
     global lock
     lock = main_lock
     bot.polling(none_stop=True)
-
-

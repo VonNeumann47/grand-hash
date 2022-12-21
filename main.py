@@ -17,7 +17,7 @@ def backup_main(lock):
 
 if __name__ == '__main__':
     lock = Lock()
-    
+
     bot_job = Thread(target=bot_main, args=(lock,))
     server_job = Thread(target=server_main, args=(lock,))
     backup_job = Thread(target=backup_main, args=(lock,))
@@ -25,4 +25,3 @@ if __name__ == '__main__':
     bot_job.start()
     server_job.start()
     backup_job.start()
-

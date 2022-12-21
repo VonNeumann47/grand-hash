@@ -28,9 +28,8 @@ with open(log_path, 'w', encoding='utf-8') as fout:
 
 with open(user_db_path, 'w'):
     pass
-with Vedis(user_db_path) as db:    
+with Vedis(user_db_path) as db:
     db[0] = ADMIN_NAME
 
 
 cloud_upload_files()
-

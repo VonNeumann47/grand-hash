@@ -63,7 +63,7 @@ def create_user(username):
 def save_game(js):
     with lock:
         cloud_download_files()
-        try:            
+        try:
             userstate = UserState.fromJSON(js)
             username = userstate.username
             us_old = UserState.load_from_db(username)
@@ -143,5 +143,3 @@ def server_main(main_lock):
     global lock
     lock = main_lock
     app.run(host=HOST, port=PORT)
-
-
