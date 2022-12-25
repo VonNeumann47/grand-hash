@@ -1,7 +1,7 @@
-from config import Lang, swears_path
-
 import re
 from string import punctuation
+
+from config import Lang, swears_path
 
 
 def normalize_text(string, specials="?"):

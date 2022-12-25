@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from threading import Thread, Lock
+from time import sleep
+
 from bot import bot_main
 from database import cloud_upload_files
 from server import server_main
-
-from threading import Thread, Lock
-from time import sleep
 
 
 def backup_main(lock):

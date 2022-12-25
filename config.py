@@ -10,9 +10,9 @@ telegram_uids_path = "TelegramUsers.txt"  # telegram_uid -> username
 user_db_path = "UsersDatabase.vdb"        # UserState -> JSON -> Vedis DB
 swears_path = "Swears.txt"                # "oh, ship!" etc.
 
-TELEGRAM_TOKEN = "1018507585:AAE34rim4NjeLn06e6N8C8xCCb3s_uQbziE"  # Telegram bot token
+TELEGRAM_TOKEN = os.environ.get('BOT_TOKEN', '@token')
 ADMIN_NAME = "$ADMIN$"
-OAUTH_TOKEN = "AgAAAAAmkiywAAaOVxLLDpWX60aUsvsX4jJqLO0"
+OAUTH_TOKEN = os.environ.get('YADISK_TOKEN', '#token')
 YADISK_PATH = "/GrandHash"
 HOST = "0.0.0.0"
 PORT = os.environ.get('PORT', 5000)

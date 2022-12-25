@@ -1,8 +1,8 @@
+from vedis import Vedis
+
 from config import log_path, known_users_path, telegram_uids_path, user_db_path, \
                    ADMIN_NAME
 from database import cloud_upload_files
-
-from vedis import Vedis
 
 
 def deleteContent(path):

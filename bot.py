@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import telebot as tb
+
 from config import State, Lang, Action, \
                    ADMIN_NAME, TELEGRAM_TOKEN
 from database import UserState, \
@@ -9,8 +11,6 @@ from talks import talks_dict, facts_dict, secret_pass, key_phrases, \
                   normalize_text, reEscapeString, is_word_in, \
                   is_lang_rus, is_lang_eng, \
                   is_offensive, is_question, is_thanks, is_greeting, is_bye
-
-import telebot as tb
 
 
 def hash_username_lvl17(name):
@@ -260,4 +260,4 @@ def on_talking(message):
 def bot_main(main_lock):
     global lock
     lock = main_lock
-    bot.polling(none_stop=True)
+    bot.infinity_polling()
